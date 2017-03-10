@@ -3,6 +3,7 @@ var Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
     Bodies = Matter.Bodies,
+    body = Matter.Body,
     MouseConstraint = Matter.MouseConstraint,
     Mouse = Matter.Mouse,
     engine,
@@ -24,7 +25,8 @@ main = function () {
     });
 
     // create two boxes and a ground
-    var boxA = Bodies.rectangle(400, 200, 50, 100);
+    var boxA = Bodies.rectangle(400, 200, 120, 50);
+    body.setInertia(boxA, Infinity);
     var circle = Bodies.circle(200, 200, 50, { restitution: 0.9 });
 
     setGravity(0, 0);
