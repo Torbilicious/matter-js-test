@@ -24,16 +24,27 @@ main = function () {
         }
     });
 
+    var mouseSettings = addMouseConstraints();
+    World.add(engine.world, mouseSettings.mouseConstraint);
+    render.mouse = mouseSettings.mouse;
+
+    // run the engine
+    Engine.run(engine);
+    // run the renderer
+    Render.run(render);
+
+
+    setupBodies();
+};
+
+setupBodies = function () {
+
     // create two boxes and a ground
     var boxA = Bodies.rectangle(400, 200, 120, 50);
     body.setInertia(boxA, Infinity);
     var circle = Bodies.circle(200, 200, 50, { restitution: 0.9 });
 
     setGravity(0, 0);
-
-    var mouseSettings = addMouseConstraints();
-    World.add(engine.world, mouseSettings.mouseConstraint);
-    render.mouse = mouseSettings.mouse;
 
     // add all of the bodies to the world
     World.add(engine.world, [
@@ -44,10 +55,6 @@ main = function () {
         Bodies.rectangle(800, 300, 50, 600, { isStatic: true }),
         Bodies.rectangle(0, 300, 50, 600, { isStatic: true })
     ]);
-    // run the engine
-    Engine.run(engine);
-    // run the renderer
-    Render.run(render);
 };
 
 createNewBox = function () {
